@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure Example</title>
+</head>
+<body>
+    <h1>Closure Example: Greeting</h1>
+    <button id="sayHello">Say Hello</button>
+    <p id="message"></p>
+
+    <script>
+        // Function that creates a closure
+        function greet(name) {
+            return function () {
+                return `Hello, ${name}!`;
+            };
+        }
+
+        // Create a greeting for "Rakesh"
+        const sayHelloToRakesh = greet('Rakesh');
+
+        // Update message when button is clicked
+        document.getElementById('sayHello').addEventListener('click', () => {
+            document.getElementById('message').textContent = sayHelloToRakesh();
+        });
+    </script>
+</body>
+</html>

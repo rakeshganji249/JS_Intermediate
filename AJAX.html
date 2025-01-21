@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Example with Custom Data Source</title>
+</head>
+<body>
+    <h1>Users List</h1>
+    <button onclick="loadUsers()">Load Users</button>
+    <ul id="user-list"></ul>
+
+    <script>
+        function loadUsers() {
+            const xhr = new XMLHttpRequest();
+            const url = 'https://raw.githubusercontent.com/rakeshganji249/DataSource/refs/heads/master/Data.JSON';
+
+            xhr.open('GET', url, true);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    try {
+                        const data = JSON.parse(xhr.responseText); // Parse JSON response
+                        const userList = document.getElementById('user-list');
+                        userList.innerHTML = ''; // Clear existing list
+                        data.forEach(user => {
+                            const li = document.createElement('li');
+                            li.textContent = `${user.name} - ${user.email}`;
+                            userList.appendChild(li);
+                        });
+                    } catch (error) {
+                        console.error('Error parsing JSON:', error);
+                    }
+                } else {
+                    console.error('Error fetching data:', xhr.status, xhr.statusText);
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error('Request failed');
+            };
+
+            xhr.send(); // Send the request
+        }
+    </script>
+</body>
+</html>

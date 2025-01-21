@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback Example</title>
+</head>
+<body>
+    <h2>Callback Example - Pizza Order</h2>
+    <button onclick="orderPizza()">Order Pizza</button>
+    <p id="callbackResult"></p>
+
+    <script>
+        function orderPizza() {
+            makePizza('Pepperoni', function() {
+                document.getElementById('callbackResult').innerText = "Pizza is ready! 🍕";
+            });
+        }
+
+        // Function that simulates pizza making
+        function makePizza(flavor, callback) {
+            document.getElementById('callbackResult').innerText = `Making your ${flavor} pizza...`;
+
+            setTimeout(() => {
+                callback();  // Call the callback after 3 seconds
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Example with Custom Data Source</title>
+</head>
+<body>
+    <h1>Users List</h1>
+    <button onclick="loadUsers()">Load Users</button>
+    <ul id="user-list"></ul>
+
+    <script>
+        function loadUsers() {
+            fetch('https://raw.githubusercontent.com/rakeshganji249/DataSource/refs/heads/master/Data.JSON')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // Parse the JSON response
+                })
+                .then(data => {
+                    const userList = document.getElementById('user-list');
+                    userList.innerHTML = ''; // Clear existing list
+                    data.forEach(user => {
+                        const li = document.createElement('li');
+                        li.textContent = `${user.name} - ${user.email}`;
+                        userList.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher-Order Functions Combined</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .output {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Higher-Order Functions in JavaScript</h1>
+    <div class="output" id="output-arguments"></div>
+    <div class="output" id="output-return"></div>
+    <div class="output" id="output-logger"></div>
+
+    <script>
+        // 1. Higher-Order Function: Accepting Functions as Arguments
+        const numbers = [1, 2, 3, 4, 5];
+
+        const squaredNumbers = numbers.map((num) => num * num); // Using `map`
+        const evenNumbers = numbers.filter((num) => num % 2 === 0); // Using `filter`
+        const sum = numbers.reduce((total, num) => total + num, 0); // Using `reduce`
+
+        // Displaying Results for Argument-Accepting Functions
+        document.getElementById("output-arguments").innerHTML = `
+            <h2>Higher-Order Functions (Argument-Accepting)</h2>
+            <p><strong>Original Numbers:</strong> ${numbers.join(", ")}</p>
+            <p><strong>Squared Numbers:</strong> ${squaredNumbers.join(", ")}</p>
+            <p><strong>Even Numbers:</strong> ${evenNumbers.join(", ")}</p>
+            <p><strong>Sum of Numbers:</strong> ${sum}</p>
+        `;
+
+        // 2. Higher-Order Function: Returning Functions
+        const multiplier = (factor) => {
+            return (number) => number * factor;
+        };
+
+        const double = multiplier(2);
+        const triple = multiplier(3);
+
+        // Displaying Results for Function-Returning Example
+        document.getElementById("output-return").innerHTML = `
+            <h2>Higher-Order Functions (Function-Returning)</h2>
+            <p><strong>Double of 5:</strong> ${double(5)}</p>
+            <p><strong>Triple of 5:</strong> ${triple(5)}</p>
+        `;
+
+        // 3. Real-Life Example: Custom Logger
+        const createLogger = (level) => {
+            return (message) => console[level](`[${level.toUpperCase()}] ${message}`);
+        };
+
+        const infoLogger = createLogger("info");
+        const warnLogger = createLogger("warn");
+        const errorLogger = createLogger("error");
+
+        infoLogger("This is an info message.");
+        warnLogger("This is a warning message.");
+        errorLogger("This is an error message.");
+
+        // Displaying Logger Information
+        document.getElementById("output-logger").innerHTML = `
+            <h2>Real-Life Example: Custom Logger</h2>
+            <p>Check the console for logger output at different levels (info, warn, error).</p>
+        `;
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immutability and Pure Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        .output {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Immutability and Pure Functions Example</h1>
+
+    <div class="output" id="output"></div>
+
+    <script>
+        // Example of Immutability:
+        const originalArray = [1, 2, 3, 4, 5];
+
+        //Attempting to mutate the original array (BAD practice in immutable approach)
+        //originalArray[0] = 10; // This would be avoided in an immutable design
+
+        // Immutably changing the array: using map to create a new array
+        const updatedArray = originalArray.map(num => num * 2);
+
+        // Pure function example:
+        function add(x, y) {
+            return x + y; // No side effects and always returns the same output for the same input
+        }
+
+        // Displaying the results
+        document.getElementById('output').innerHTML = `
+            <h2>Immutability Example:</h2>
+            <p><strong>Original Array:</strong> ${originalArray.join(', ')}</p>
+            <p><strong>Updated Array (using map):</strong> ${updatedArray.join(', ')}</p>
+            
+            <h2>Pure Function Example:</h2>
+            <p><strong>Result of add(5, 10):</strong> ${add(5, 10)}</p>
+            <p><strong>Result of add(5, 10) again:</strong> ${add(5, 10)}</p>
+        `;
+    </script>
+</body>
+</html>

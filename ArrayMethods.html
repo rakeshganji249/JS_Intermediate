@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods: Map, Filter, Reduce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        .output {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Array Methods: Map, Filter, Reduce</h1>
+    <div class="output" id="output-map"></div>
+    <div class="output" id="output-filter"></div>
+    <div class="output" id="output-reduce"></div>
+
+    <script>
+        // Example array
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        // 1. map: Multiply each number by 2
+        const doubled = numbers.map(num => num * 2);
+        document.getElementById('output-map').innerHTML = `
+            <h2>Map Example</h2>
+            <p>Original Numbers: ${numbers.join(', ')}</p>
+            <p>Doubled Numbers: ${doubled.join(', ')}</p>
+        `;
+
+        // 2. filter: Get even numbers
+        const evenNumbers = numbers.filter(num => num % 2 === 0);
+        document.getElementById('output-filter').innerHTML = `
+            <h2>Filter Example</h2>
+            <p>Original Numbers: ${numbers.join(', ')}</p>
+            <p>Even Numbers: ${evenNumbers.join(', ')}</p>
+        `;
+
+        // 3. reduce: Sum of all numbers
+        const sum = numbers.reduce((total, num) => total + num, 0);
+        document.getElementById('output-reduce').innerHTML = `
+            <h2>Reduce Example</h2>
+            <p>Original Numbers: ${numbers.join(', ')}</p>
+            <p>Sum of Numbers: ${sum}</p>
+        `;
+    </script>
+</body>
+</html>

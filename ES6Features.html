@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 Features</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>ES6 Features in Action</h1>
+    <div id="output"></div>
+
+    <script>
+        // 1. Let and Const
+        let letVariable = "I'm a block-scoped variable!";
+        const constVariable = "I'm a constant value!";
+        console.log(letVariable, constVariable);
+
+        // 2. Arrow Functions
+        const add = (a, b) => a + b;
+        console.log("Sum:", add(5, 3));
+
+        // 3. Template Literals
+        const userName = "Alice";
+        const greeting = `Hello, ${userName}! Welcome to ES6 demo.`;
+        console.log(greeting);
+
+        // 4. Default Parameters
+        const welcome = (name = "Guest") => `Welcome, ${name}!`;
+        console.log(welcome());
+        console.log(welcome("Bob"));
+
+        // 5. Destructuring
+        const user = { name: "John", age: 30 };
+        const { name, age } = user;
+        console.log(`Name: ${name}, Age: ${age}`);
+
+        const numbers = [10, 20, 30];
+        const [first, second, third] = numbers;
+        console.log("Array Elements:", first, second, third);
+
+        // 6. Rest and Spread Operators
+        const sum = (...nums) => nums.reduce((acc, num) => acc + num, 0);
+        console.log("Rest Operator Sum:", sum(1, 2, 3, 4));
+
+        const extendedArray = [...numbers, 40, 50];
+        console.log("Spread Operator Array:", extendedArray);
+
+        // 7. Modules
+        // Note: Modules would require separate files, so skipped here.
+
+        // 8. Classes
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            getInfo() {
+                return `Name: ${this.name}, Age: ${this.age}`;
+            }
+        }
+        const person = new Person("Emily", 25);
+        console.log(person.getInfo());
+
+        // 9. Promises
+        const fetchData = () => new Promise((resolve) => {
+            setTimeout(() => resolve("Data fetched!"), 2000);
+        });
+        fetchData().then(console.log);
+
+        // 10. Enhanced Object Literals
+        const city = "New York";
+        const country = "USA";
+        const placeInfo = {
+            city,
+            country,
+            displayLocation() {
+                return `${this.city}, ${this.country}`;
+            }
+        };
+        console.log(placeInfo.displayLocation());
+
+        // 11. For...of Loop
+        for (const num of numbers) {
+            console.log("For...of Number:", num);
+        }
+
+        // 12. Symbol
+        const id = Symbol("id");
+        const product = { [id]: 101, name: "Laptop" };
+        console.log("Product ID:", product[id]);
+
+        // 13. Map and Set
+        const map = new Map();
+        map.set("key1", "value1");
+        console.log("Map Value:", map.get("key1"));
+
+        const set = new Set([1, 2, 2, 3]);
+        console.log("Set Values:", [...set]);
+
+        // Displaying Output on Page
+        document.getElementById("output").innerHTML = `
+            <h2>Check the Console for Output</h2>
+            <pre>
+                - Let and Const
+                - Arrow Functions
+                - Template Literals
+                - Default Parameters
+                - Destructuring
+                - Rest and Spread Operators
+                - Classes
+                - Promises
+                - Enhanced Object Literals
+                - For...of Loop
+                - Symbol
+                - Map and Set
+            </pre>
+        `;
+    </script>
+</body>
+</html>
