@@ -55,10 +55,8 @@
         const extendedArray = [...numbers, 40, 50];
         console.log("Spread Operator Array:", extendedArray);
 
-        // 7. Modules
-        // Note: Modules would require separate files, so skipped here.
-
-        // 8. Classes
+        
+        // 7. Classes
         class Person {
             constructor(name, age) {
                 this.name = name;
@@ -71,13 +69,13 @@
         const person = new Person("Emily", 25);
         console.log(person.getInfo());
 
-        // 9. Promises
+        // 8. Promises
         const fetchData = () => new Promise((resolve) => {
             setTimeout(() => resolve("Data fetched!"), 2000);
         });
         fetchData().then(console.log);
 
-        // 10. Enhanced Object Literals
+        // 9. Enhanced Object Literals
         const city = "New York";
         const country = "USA";
         const placeInfo = {
@@ -89,17 +87,17 @@
         };
         console.log(placeInfo.displayLocation());
 
-        // 11. For...of Loop
+        // 10. For...of Loop
         for (const num of numbers) {
             console.log("For...of Number:", num);
         }
 
-        // 12. Symbol
+        // 11. Symbol
         const id = Symbol("id");
         const product = { [id]: 101, name: "Laptop" };
         console.log("Product ID:", product[id]);
 
-        // 13. Map and Set
+        // 12. Map and Set
         const map = new Map();
         map.set("key1", "value1");
         console.log("Map Value:", map.get("key1"));

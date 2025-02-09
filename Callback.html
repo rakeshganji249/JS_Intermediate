@@ -7,24 +7,33 @@
 </head>
 <body>
     <h2>Callback Example - Pizza Order</h2>
-    <button onclick="orderPizza()">Order Pizza</button>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button onclick="handleGreet()">Greet </button>
     <p id="callbackResult"></p>
 
     <script>
-        function orderPizza() {
-            makePizza('Pepperoni', function() {
-                document.getElementById('callbackResult').innerText = "Pizza is ready! 🍕";
-            });
+        function greet(name,callback) {
+            if (!name) {
+                alert("Please enter a name!");
+                return;
+            }
+           let message=`Hello,${name}`;
+           document.getElementById("callbackResult").innerText = message;
+           console.log(message);
+           callback(name);
+          }
+        function sayGoodbye(name){
+            goodbyeMessage = `Goodbye, ${name}`;
+            document.getElementById("callbackResult").innerText += `\n${goodbyeMessage}`;
+            console.log(goodbyeMessage);
+        }  
+        
+        function handleGreet() {
+            const name = document.getElementById("nameInput").value.trim();
+            greet(name, sayGoodbye);
         }
+       
 
-        // Function that simulates pizza making
-        function makePizza(flavor, callback) {
-            document.getElementById('callbackResult').innerText = `Making your ${flavor} pizza...`;
-
-            setTimeout(() => {
-                callback();  // Call the callback after 3 seconds
-            }, 3000);
-        }
     </script>
 </body>
 </html>

@@ -3,45 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJAX Example with Custom Data Source</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Users List</h1>
-    <button onclick="loadUsers()">Load Users</button>
-    <ul id="user-list"></ul>
-
-    <script>
-        function loadUsers() {
-            const xhr = new XMLHttpRequest();
-            const url = 'https://raw.githubusercontent.com/rakeshganji249/DataSource/refs/heads/master/Data.JSON';
-
-            xhr.open('GET', url, true);
-
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    try {
-                        const data = JSON.parse(xhr.responseText); // Parse JSON response
-                        const userList = document.getElementById('user-list');
-                        userList.innerHTML = ''; // Clear existing list
-                        data.forEach(user => {
-                            const li = document.createElement('li');
-                            li.textContent = `${user.name} - ${user.email}`;
-                            userList.appendChild(li);
-                        });
-                    } catch (error) {
-                        console.error('Error parsing JSON:', error);
-                    }
-                } else {
-                    console.error('Error fetching data:', xhr.status, xhr.statusText);
-                }
-            };
-
-            xhr.onerror = function () {
-                console.error('Request failed');
-            };
-
-            xhr.send(); // Send the request
-        }
-    </script>
+    <h1>AJAX example</h1>
+    <p id="data">Initial data</p>
+    <button type="button" onclick="loadData()">Change data</button>
+    <button type="button" onclick="retreiveData()">Retrive data</button>
+    <button type="button" onclick="LoadDoc()">Load data</button>
+    <div id="demo"></div>
 </body>
+<script>
+    
+    function loadData() {
+        document.getElementById("data").innerHTML="Changed data"
+    }
+    function retreiveData(){
+        document.getElementById("data").innerHTML="Initial data"
+    }
+    function LoadDoc(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const data =JSON.parse(this.responseText);
+          document.getElementById("demo").innerHTML = JSON.parse(this.responseText)[0].name +" "+ JSON.stringify(JSON.parse(this.responseText)[0].address);
+        }
+      };
+      xhttp.open("GET", 'https://raw.githubusercontent.com/rakeshganji249/DataSource/refs/heads/master/Data.JSON', true);
+      xhttp.send();
+    }
+</script>
 </html>

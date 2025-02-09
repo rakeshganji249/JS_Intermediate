@@ -28,15 +28,11 @@
         // Example of Immutability:
         const originalArray = [1, 2, 3, 4, 5];
 
-        //Attempting to mutate the original array (BAD practice in immutable approach)
-        //originalArray[0] = 10; // This would be avoided in an immutable design
-
-        // Immutably changing the array: using map to create a new array
         const updatedArray = originalArray.map(num => num * 2);
 
         // Pure function example:
         function add(x, y) {
-            return x + y; // No side effects and always returns the same output for the same input
+            return x + y; 
         }
 
         // Displaying the results
