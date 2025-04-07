@@ -8,6 +8,7 @@
 <body>
     <h2>Promise Example - File Download</h2>
     <button onclick="downloadFile()">Download File</button>
+    <button onclick="testStaticMethods()">Test Static Methods</button>
     <p id="promiseResult"></p>
 
     <script>
@@ -18,19 +19,61 @@
                 })
                 .catch((error) => {
                     document.getElementById('promiseResult').innerText = error;
+                })
+                .finally(() => {
+                    console.log("Download attempt finished.");
                 });
         }
 
-        
         function simulateDownload(file) {
             return new Promise((resolve, reject) => {
                 document.getElementById('promiseResult').innerText = `Downloading ${file}...`;
 
                 setTimeout(() => {
-                    const success = Math.random() > 0.4;  
-                    success ? resolve("Download complete ") : reject("Download failed ");
+                    const success = Math.random() > 0.4;
+                    success ? resolve("Download complete!") : reject("Download failed!");
                 }, 3000);
             });
+        }
+
+        //Static Methods
+        function testStaticMethods() {
+            const promise1 = Promise.resolve("Resolved Immediately");
+            const promise2 = new Promise((resolve) => setTimeout(() => resolve("slow"), 2000));
+            const promise3 = Promise.reject("0");
+
+            // Promise.all
+            Promise.all([promise1, promise2])
+                .then(results => {
+                    console.log("Promise.all results:", results);
+                })
+                .catch(error => {
+                    console.log("Promise.all error:", error);
+                });
+
+            // Promise.allSettled
+            Promise.allSettled([promise1, promise2, promise3])
+                .then(results => {
+                    console.log("Promise.allSettled results:", results);
+                });
+
+            // Promise.race
+            Promise.race([promise1, promise2, promise3])
+                .then(result => {
+                    console.log("Promise.race result:", result);
+                })
+                .catch(error => {
+                    console.log("Promise.race error:", error);
+                });
+
+            // Promise.any
+            Promise.any([promise3, promise1, promise2])
+                .then(result => {
+                    console.log("Promise.any result:", result);
+                })
+                .catch(error => {
+                    console.log("Promise.any error:", error);
+                });
         }
     </script>
 </body>
